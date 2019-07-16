@@ -36,7 +36,7 @@ class cfirst extends CI_Controller {
     }
 
 
-	public function assecond(){
+    public function assecond(){
         
         $statusdata = array();
         $shop = $this->session->userdata('shop');
@@ -49,7 +49,7 @@ class cfirst extends CI_Controller {
     
     }
 	
-	public function third(){
+    public function third(){
         
         $statusdata = array();
         $shop = $this->session->userdata('shop');
@@ -72,27 +72,26 @@ class cfirst extends CI_Controller {
     
     }
 	
-	public function isAvailableee()
-	{ 
-	
-		$a_id =$this->input->post('articleid');
+    public function isAvailableee()
+    {	
+            $a_id =$this->input->post('articleid');
+
+
+            $status = false;
+            $id = 0;
+            $check = $this->auth->isAvailablee($a_id);
+
+            if ($check)
+                    {
+                        $status = true ;
+                    }
+            $inserted_data = array( 'status' => $status);
+            echo json_encode($inserted_data); 
 		
-		
-		$status = false;
-		$id = 0;
-		$check = $this->auth->isAvailablee($a_id);
-		
-		if ($check)
-			{
-			    $status = true ;
-			}
-		$inserted_data = array( 'status' => $status);
-		echo json_encode($inserted_data); 
-		
-	}
+    }
  
-   	public function isAvailable()
-   {
+    public function isAvailable()
+    {
 	   $id =$this->input->post('articleid');
 	  // pre($id);exit;
 	   $this->auth->isAvailablee($id);
@@ -100,8 +99,8 @@ class cfirst extends CI_Controller {
 	//pre($check);exit;
     }
 	
-	public function second()
-   {
+    public function second()
+    {
 	    $this->load->view('second');
     }
 	
