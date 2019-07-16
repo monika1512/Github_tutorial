@@ -116,8 +116,7 @@ class Homepage extends CI_Controller {
 
                             unset($customer_addresses[0]);
 
-                            foreach ($customer_addresses as $address) {
-                                
+                            foreach ($customer_addresses as $address) {                                
                                 $bulksaveaddress[] = [
                                     'id'=>$address['id'],
                                     'customer_id'=>$address['customer_id'],
@@ -231,44 +230,35 @@ class Homepage extends CI_Controller {
                 $params = array('shop_domain' => $shop, 'token' => $token, 'api_key' => API_KEY, 'secret' => SECRET);
                 $this->load->library('shopifyapi', $params);
                 $data=array (
-							'product' => 
-									array ('id' => 1544304066615,'title' => 'New Product Title',
-									'variants' => 
-									array (0 => array (
-													'id' => 13621559033911,
-													'price' => '2000.00',
-													'sku' => 'Updating the Product SKU',
-													),
-											),
-							        ),
-							);
+                                'product' => 
+                                                array ('id' => 1544304066615,'title' => 'New Product Title',
+                                                'variants' => 
+                                                array (0 => array (
+                                                                    'id' => 13621559033911,
+                                                                    'price' => '2000.00',
+                                                                    'sku' => 'Updating the Product SKU',
+                                                                    ),
+                                                                ),
+                                        ),
+                                );
      			
                     $products = $this->shopifyapi->call('PUT','/admin/products/1544304066615.json',$data);
                     $bulksavecustomers = $bulksaveaddress = [];
-
-
-				 pre($products);exit;
-                 
+				 pre($products);exit;                 
         }
 	}
 	
-	 public function deleteproducts(){
-		 if (!$this->input->is_cli_request()) {
-        
+	public function deleteproducts(){
+            if (!$this->input->is_cli_request()) {        
             $shop   = 'metizsoft1.myshopify.com';
             $token  = '2bd33441f554065eb124376e4c951d40';
 
                 $params = array('shop_domain' => $shop, 'token' => $token, 'api_key' => API_KEY, 'secret' => SECRET);
-                $this->load->library('shopifyapi', $params);
-               
+                $this->load->library('shopifyapi', $params);         
      			
-                    $products = $this->shopifyapi->call('DELETE','/admin/products/1544304066615.json');
-                   
-
-
-				 echo "Product deleted";exit;
-                 
-        }
+                    $products = $this->shopifyapi->call('DELETE','/admin/products/1544304066615.json');                  
+                          echo "Product deleted";exit;
+            }
 	}
 	
 	
